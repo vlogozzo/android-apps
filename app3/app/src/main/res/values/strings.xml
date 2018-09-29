@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Lab 3</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="enter_username">Enter Username</string>
+    <string name="home">HOME</string>
+    <string name="login">Login</string>
+    <string name="name">Vincent Logozzo</string>
+    <string name="pass">pass</string>
+    <string name="password">PASSWORD</string>
+    <string name="password_activity">Password Activity</string>
+    <string name="second_activity">Second Activity</string>
+    <string name="user">User</string>
+    <string name="user_string">Username is %1$s</string>
+    <string name="username">USERNAME</string>
+    <string name="username_activity">Username Activity</string>
+</resources>

@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">assignment1</string>
+    <string name="myName">Vincent Logozzo</string>
+
+    <string name="left_header">Hi World</string>
+    <string name="alice">Alice</string>
+    <string name="bob">Bob</string>
+    <string name="carol">Carol</string>
+    <string name="say_hi">SAY HI</string>
+
+    <string name="right_header">Hello Seneca</string>
+    <string name="dave">Dave</string>
+    <string name="eve">Eve</string>
+    <string name="fred">Fred</string>
+    <string name="say_hello">SAY HELLO</string>
+
+    <string name="red">RED</string>
+    <string name="yellow">YELLOW</string>
+    <string name="green">GREEN</string>
+    <string name="colours">COLOURS</string>
+</resources>

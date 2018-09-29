@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <TextView android:textSize="30sp" android:textStyle="bold" android:textColor="#00ffff" android:gravity="center" android:id="@+id/header" android:background="@android:color/black" android:padding="10dp" android:layout_width="match_parent" android:layout_height="100dp" android:text="@string/header"/>
+        <LinearLayout android:textStyle="bold" android:orientation="horizontal" android:id="@+id/pwd_block2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="25dp">
+            <EditText android:textSize="20sp" android:textStyle="bold" android:textColor="#000000" android:gravity="center" android:background="#ffff00" android:layout_width="150dp" android:layout_height="50dp" android:hint="@string/user_name"/>
+            <Button android:textSize="20sp" android:textStyle="bold" android:textColor="#ffffff" android:gravity="center" android:id="@+id/btn_login2" android:background="#0000ff" android:layout_width="150dp" android:layout_height="50dp" android:layout_marginLeft="50dp" android:text="@string/facebook" android:layout_marginStart="50dp"/>
+        </LinearLayout>
+        <LinearLayout android:orientation="horizontal" android:id="@+id/pwd_block3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="25dp">
+            <EditText android:textSize="20sp" android:textStyle="bold" android:textColor="#000000" android:gravity="center" android:id="@+id/fld_pwd3" android:background="#ffff00" android:layout_width="150dp" android:layout_height="50dp" android:hint="@string/password" android:inputType="textPassword"/>
+            <Button android:textSize="20sp" android:textStyle="bold" android:textColor="#000000" android:gravity="center" android:id="@+id/btn_login3" android:background="#ff00ff" android:layout_width="150dp" android:layout_height="50dp" android:layout_marginLeft="50dp" android:text="@string/twitter" android:layout_marginStart="50dp"/>
+        </LinearLayout>
+        <LinearLayout android:orientation="horizontal" android:id="@+id/pwd_block4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="25dp">
+            <Button android:textSize="20sp" android:textStyle="bold" android:textColor="#000000" android:gravity="center" android:id="@+id/btn_login4" android:background="#00ff00" android:layout_width="150dp" android:layout_height="50dp" android:text="@string/amazon"/>
+            <Button android:textSize="20sp" android:textStyle="bold" android:textColor="#ffffff" android:gravity="center" android:id="@+id/btn_login5" android:background="#ff0000" android:layout_width="150dp" android:layout_height="50dp" android:layout_marginLeft="50dp" android:text="@string/google" android:layout_marginStart="50dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

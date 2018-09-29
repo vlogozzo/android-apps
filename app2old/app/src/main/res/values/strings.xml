@@ -1,0 +1,10 @@
+<resources>
+    <string name="name">Vincent Logozzo</string>
+    <string name="username">Username</string>
+    <string name="username_field">Enter Username</string>
+    <string name="password_field">Enter Password</string>
+    <string name="password">Password</string>
+    <string name="user_pass">USER-PASS</string>
+    <string name="user_name">USERNAME</string>
+    <string name="app_name">Lab2</string>
+</resources>
