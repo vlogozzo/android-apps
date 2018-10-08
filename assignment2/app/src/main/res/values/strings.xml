@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">assignment2</string>
+
+    <string name="myName">Vincent Logozzo</string>
+    <string name="totalScore">TOTAL MARKS:</string>
+    <string name="score">0</string>
+    <string name="questionsComplete">QUESTIONS COMPLETED:</string>
+    <string name="completed">0</string>
+    <string name="trueButton">TRUE</string>
+    <string name="falseButton">FALSE</string>
+    <string name="hintButton">HINT!</string>
+    <string name="cheatButton">CHEAT!</string>
+    <string name="prevButton">&lt; PREV</string>
+    <string name="nextButton">NEXT &gt;</string>
+    <string name="confirmCheat">Are you sure you want to cheat?</string>
+    <string name="answer">Answer</string>
+    <string name="showAnswer">SHOW ANSWER</string>
+    <string name="exit">EXIT</string>
+    <string name="confirmHint">Are you sure you want a hint?</string>
+    <string name="hint">Hint</string>
+    <string name="showHint">SHOW HINT</string>
+
+
+    <string name="question_one">1. Canberra is the capital of Australia.</string>
+    <string name="hint_one">A resident of Canberra is known as a Canberran.</string>
+
+    <string name="question_two">2. The Pacific Ocean is larger than the Atlantic Ocean.</string>
+    <string name="hint_two">There are more fish in the Pacific Ocean.</string>
+
+    <string name="question_three">3. The Suez Canal connects the Red Sea and the Indian Ocean.</string>
+    <string name="hint_three">The Suez Canal connects two seas.</string>
+
+    <string name="question_four">4. The source of the Nile River is in Egypt.</string>
+    <string name="hint_four">Ask Omar for the answer.</string>
+
+    <string name="question_five">5. The Amazon River is the longest river in the Americas.</string>
+    <string name="hint_five">You can buy many books on the Amazon website.</string>
+
+    <string name="question_six">6. Lake Baikal is the oldest and deepest freshwater lake.</string>
+    <string name="hint_six">Lake Ontario is one of the five Great Lakes.</string>
+
+
+
+</resources>
+
