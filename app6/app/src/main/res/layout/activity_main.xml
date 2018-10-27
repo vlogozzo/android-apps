@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@android:color/holo_red_light"
+        android:orientation="vertical"
+        android:padding="10.0sp">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ff0000ff"
+            android:gravity="center"
+            android:text="@string/myName"
+            android:textColor="#ffffffff"
+            android:textSize="25.0sp" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10.0sp">
+
+            <TextView
+                android:id="@+id/idText"
+                android:layout_width="100.0sp"
+                android:layout_height="wrap_content"
+                android:text="@string/id"
+                android:textColor="#ff000000"
+                android:textSize="25.0sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/idField"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/id"
+                android:inputType="number"
+                android:textColor="#ff000000"
+                android:textSize="25.0sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10.0sp">
+
+            <TextView
+                android:id="@+id/nameText"
+                android:layout_width="100.0sp"
+                android:layout_height="wrap_content"
+                android:text="@string/name"
+                android:textColor="#ff0000ff"
+                android:textSize="25.0sp" />
+
+            <EditText
+                android:id="@+id/nameField"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/name"
+                android:inputType="text"
+                android:textColor="#ff000000"
+                android:textSize="25.0sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10.0sp">
+
+            <TextView
+                android:id="@+id/markText"
+                android:layout_width="100.0sp"
+                android:layout_height="wrap_content"
+                android:text="@string/marks"
+                android:textColor="#ff0000ff"
+                android:textSize="25.0sp" />
+
+            <EditText
+                android:id="@+id/markField"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/marks"
+                android:inputType="numberDecimal"
+                android:textColor="#ff000000"
+                android:textSize="25.0sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/addStudentButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20.0sp"
+            android:text="@string/addNewStudent"
+            android:textSize="20.0sp" />
+
+        <Button
+            android:id="@+id/viewStudentsButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/viewAllStudents"
+            android:textSize="20.0sp" />
+
+        <Button
+            android:id="@+id/findStudentByIdButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/findStudentById"
+            android:textSize="20.0sp" />
+
+        <Button
+            android:id="@+id/deleteStudentByIdButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/deleteStudentById"
+            android:textSize="20.0sp" />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

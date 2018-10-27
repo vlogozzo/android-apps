@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">app6</string>
+    <string name="myName">Vincent Logozzo</string>
+    <string name="id">ID</string>
+    <string name="name">Name</string>
+    <string name="marks">marks</string>
+    <string name="addNewStudent">ADD NEW STUDENT</string>
+    <string name="viewAllStudents">VIEW ALL STUDENTS</string>
+    <string name="findStudentById">FIND STUDENT (USING ID)</string>
+    <string name="deleteStudentById">DELETE STUDENT(USING ID)</string>
+</resources>
