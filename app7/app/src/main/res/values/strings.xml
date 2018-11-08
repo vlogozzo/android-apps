@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">app7</string>
+    <string name="myName">Vincent Logozzo</string>
+    <string name="name">name</string>
+    <string name="dept">dept</string>
+    <string name="year">year</string>
+    <string name="add">add</string>
+    <string name="view">view</string>
 </resources>

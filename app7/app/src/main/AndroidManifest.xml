@@ -16,6 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".list_display" />
+        <activity android:name=".expanded_element"></activity>
     </application>
 
 </manifest>
