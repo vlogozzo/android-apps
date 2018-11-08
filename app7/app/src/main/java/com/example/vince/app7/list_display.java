@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
@@ -29,7 +30,8 @@ public class list_display extends AppCompatActivity {
         employeesL = bundle.getParcelableArrayList("employeesL");
         employeesR = bundle.getParcelableArrayList("employeesR");
 
-        //Toast.makeText(getApplicationContext(), employeesL.get(0).getName(), Toast.LENGTH_SHORT).show();
+
+
         ListView leftList = findViewById(R.id.listViewLeft);
         leftList.setAdapter(new listAdapter(getApplicationContext(), employeesL));
         leftList.setOnItemClickListener(new AdapterView.OnItemClickListener() {

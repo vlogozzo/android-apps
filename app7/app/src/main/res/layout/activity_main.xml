@@ -78,7 +78,7 @@
                 android:textSize="20.0sp" />
 
             <Button
-                android:id="@+id/rightAddButton"
+                android:id="@+id/leftAddButton"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25.0sp"
@@ -145,7 +145,7 @@
                 android:textSize="20.0sp" />
 
             <Button
-                android:id="@+id/leftAddButton"
+                android:id="@+id/rightAddButton"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20.0sp"

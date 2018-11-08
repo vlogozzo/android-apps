@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import java.io.Serializable;
@@ -26,34 +27,34 @@ public class MainActivity extends AppCompatActivity {
         String table;
 
         public dbAddEmployee(String side) {
-            if (side == "left")
-                this.table = "employeesL";
-            else if (side == "right")
-                this.table = "employeesR";
+            this.table = side;
         }
 
         @Override
         public void onClick(View v) {
-            if (table == "employeesL") {
-                EditText name = findViewById(R.id.leftName);
-                EditText dept = findViewById(R.id.leftDept);
-                EditText year = findViewById(R.id.leftYear);
+            EditText name;
+            EditText dept;
+            EditText year;
+                name = findViewById(R.id.leftName);
+                dept = findViewById(R.id.leftDept);
+                year = findViewById(R.id.leftYear);
 
-                if (name.getText().length() > 0 && dept.getText().length() > 0 && year.getText().length() > 0) {
-                    MainActivity.db.execSQL("INSERT INTO " + this.table + " VALUES(?,?,?)", new Object[]{name.getText(), dept.getText(), year.getText()});
-                } else {
-                    Toast.makeText(getApplicationContext(), "Incomplete", Toast.LENGTH_SHORT).show();
-                }
-            } else if (table == "employeesR") {
-                EditText name = findViewById(R.id.rightName);
-                EditText dept = findViewById(R.id.rightDept);
-                EditText year = findViewById(R.id.rightYear);
+            if (table == "employeesR") {
+                name = findViewById(R.id.rightName);
+                dept = findViewById(R.id.rightDept);
+                year = findViewById(R.id.rightYear);
+            }
 
-                if (name.getText().length() > 0 && dept.getText().length() > 0 && year.getText().length() > 0) {
-                    MainActivity.db.execSQL("INSERT INTO " + this.table + " VALUES(?,?,?)", new Object[]{name.getText(), dept.getText(), year.getText()});
-                } else {
-                    Toast.makeText(getApplicationContext(), "Incomplete", Toast.LENGTH_SHORT).show();
-                }
+            if (name.getText().length() > 0 && dept.getText().length() > 0 && year.getText().length() > 0 &&
+                    !name.getText().toString().toUpperCase().contains("INSERT") &&
+                    !dept.getText().toString().toUpperCase().contains("INSERT") &&
+                    !year.getText().toString().toUpperCase().contains("INSERT")) {
+                MainActivity.db.execSQL("INSERT INTO " + this.table + " VALUES(?,?,?)", new Object[]{name.getText(), dept.getText(), year.getText()});
+                name.setText("");
+                dept.setText("");
+                year.setText("");
+            } else {
+                Toast.makeText(getApplicationContext(), "Incomplete", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -82,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
             }
             cursor.close();
 
-
             Intent intent = new Intent(MainActivity.this, list_display.class);
 
             Bundle bundle = new Bundle();
@@ -91,7 +91,10 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtras(bundle);
 
             startActivity(intent);
+            employeesL.clear();
+            employeesR.clear();
         }
+
     }
 
 
@@ -104,8 +107,8 @@ public class MainActivity extends AppCompatActivity {
         this.db.execSQL("create table if not exists employeesL(name varchar, department varchar, year varchar);");
         this.db.execSQL("create table if not exists employeesR(name varchar, department varchar, year varchar);");
 
-        findViewById(R.id.rightAddButton).setOnClickListener(new dbAddEmployee("left"));
-        findViewById(R.id.leftAddButton).setOnClickListener(new dbAddEmployee("right"));
+        findViewById(R.id.leftAddButton).setOnClickListener(new dbAddEmployee("employeesL"));
+        findViewById(R.id.rightAddButton).setOnClickListener(new dbAddEmployee("employeesR"));
         findViewById(R.id.viewButton).setOnClickListener(new dbSelectAll());
 
     }
