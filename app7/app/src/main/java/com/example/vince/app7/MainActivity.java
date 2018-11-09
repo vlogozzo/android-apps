@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                 dept = findViewById(R.id.leftDept);
                 year = findViewById(R.id.leftYear);
 
-            if (table == "employeesR") {
+            if (table.equals("employeesR")) {
                 name = findViewById(R.id.rightName);
                 dept = findViewById(R.id.rightDept);
                 year = findViewById(R.id.rightYear);
