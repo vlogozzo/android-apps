@@ -17,7 +17,7 @@ public class update_team extends AppCompatActivity {
         setContentView(R.layout.activity_update_team);
 
 
-        Team team = getIntent().getParcelableExtra("team");
+        final Team team = getIntent().getParcelableExtra("team");
 
         ((TextView) findViewById(R.id.nameField)).setText(team.getName());
         ((TextView) findViewById(R.id.cityField)).setText(team.getCity());
@@ -38,6 +38,7 @@ public class update_team extends AppCompatActivity {
                     Bundle bundle = new Bundle();
 
                     bundle.putParcelable("updatedTeam", new Team(
+                            team.getId(),
                             city.getText().toString(),
                             name.getText().toString(),
                             sport.getText().toString(),

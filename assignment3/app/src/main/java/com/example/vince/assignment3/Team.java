@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Team implements Parcelable {
+    private int id = 0;
     private String city;
     private String name;
     private String sport = "";
@@ -22,7 +23,20 @@ public class Team implements Parcelable {
             this.stadium = stadium;
     }
 
+    public Team(int id, String city, String name, String sport, String mvp, String stadium) {
+        this.id = id;
+        this.city = city;
+        this.name = name;
+        if (sport != null)
+            this.sport = sport;
+        if (mvp != null)
+            this.mvp = mvp;
+        if (stadium != null)
+            this.stadium = stadium;
+    }
+
     protected Team(Parcel in) {
+        id = in.readInt();
         city = in.readString();
         name = in.readString();
         sport = in.readString();
@@ -41,6 +55,10 @@ public class Team implements Parcelable {
             return new Team[size];
         }
     };
+
+    public int getId() {
+        return id;
+    }
 
     public String getCity() {
         return city;
@@ -69,6 +87,7 @@ public class Team implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
         dest.writeString(city);
         dest.writeString(name);
         dest.writeString(sport);
@@ -79,6 +98,6 @@ public class Team implements Parcelable {
 
     @Override
     public String toString() {
-        return String.format("%s %s %s %s %s", city, name, sport, mvp, stadium);
+        return String.format("%d %s %s %s %s %s", id, city, name, sport, mvp, stadium);
     }
 }

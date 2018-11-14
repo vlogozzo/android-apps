@@ -31,6 +31,7 @@ public class appDB extends SQLiteOpenHelper {
         Cursor cursor = getReadableDatabase().rawQuery("SELECT * FROM teams", null);
         while (cursor.moveToNext()) {
             teams.add(new Team(
+                    cursor.getInt(cursor.getColumnIndex("id")),
                     cursor.getString(cursor.getColumnIndex("city")),
                     cursor.getString(cursor.getColumnIndex("name")),
                     cursor.getString(cursor.getColumnIndex("sport")),
@@ -45,12 +46,14 @@ public class appDB extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         for (Team t : teams) {
             ContentValues values = new ContentValues();
+            if (t.getId() != 0)
+                values.put("id", t.getId());
             values.put("city", t.getCity());
             values.put("name", t.getName());
             values.put("sport", t.getSport());
             values.put("mvp", t.getMvp());
             values.put("stadium", t.getStadium());
-            db.insert("teams", null, values);
+            db.insertWithOnConflict("teams", null, values, SQLiteDatabase.CONFLICT_REPLACE);
         }
         db.close();
     }
