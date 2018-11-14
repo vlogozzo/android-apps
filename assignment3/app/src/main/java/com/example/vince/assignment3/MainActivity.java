@@ -43,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         teams = db.getAllTeams();
-        for (Team t : teams)
-            Log.d("checkout", t.toString());
+        Log.d("checkout", "onCreate: "+String.valueOf(teams.size()));
+        Team.setCount(teams.size());
         adapter = new listAdapter(this, teams);
         ListView listview = findViewById(R.id.listView);
         listview.setAdapter(adapter);
@@ -75,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        Log.d("checkout", "onPause: called");
         db.update_teams(teams);
     }
 }

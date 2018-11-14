@@ -4,7 +4,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Team implements Parcelable {
-    private int id = 0;
+    private static int count;
+    private int id;
     private String city;
     private String name;
     private String sport = "";
@@ -13,6 +14,8 @@ public class Team implements Parcelable {
 
 
     public Team(String city, String name, String sport, String mvp, String stadium) {
+        count++;
+        this.id = count;
         this.city = city;
         this.name = name;
         if (sport != null)
@@ -78,6 +81,10 @@ public class Team implements Parcelable {
 
     public String getStadium() {
         return stadium;
+    }
+
+    public static void setCount(int count) {
+        Team.count = count;
     }
 
     @Override
