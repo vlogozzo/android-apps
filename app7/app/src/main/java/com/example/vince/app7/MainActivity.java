@@ -3,16 +3,12 @@ package com.example.vince.app7;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 
-import java.io.Serializable;
-import java.util.List;
+import android.view.View;
 import java.util.ArrayList;
-import java.util.stream.IntStream;
+
 
 import android.widget.EditText;
 import android.widget.Toast;

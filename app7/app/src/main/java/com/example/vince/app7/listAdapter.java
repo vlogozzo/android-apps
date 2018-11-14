@@ -21,6 +21,7 @@ public class listAdapter extends ArrayAdapter<Employee> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View newView = LayoutInflater.from(getContext()).inflate(R.layout.list_element, parent, false);
 
+
         Employee asset = getItem(position);
         TextView text = newView.findViewById(R.id.textField1);
         text.setText(asset.getName());

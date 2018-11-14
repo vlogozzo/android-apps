@@ -1,10 +1,7 @@
 package com.example.vince.app7;
 
-
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import java.io.Serializable;
 
 public class Employee implements Parcelable {
     private String name;
