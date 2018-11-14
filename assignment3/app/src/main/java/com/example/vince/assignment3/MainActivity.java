@@ -73,8 +73,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onPause() {
+        super.onPause();
+        Log.d("checkout", "onPause: called");
         db.update_teams(teams);
     }
 }
