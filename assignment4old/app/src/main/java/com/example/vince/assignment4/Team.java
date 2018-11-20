@@ -10,10 +10,10 @@ public class Team implements Parcelable {
     private String name;
     private String sport = "";
     private String mvp = "";
-    private String image = "";
+    private byte[] image;
 
 
-    public Team(String city, String name, String sport, String mvp, String image) {
+    public Team(String city, String name, String sport, String mvp, byte[] image) {
         count++;
         this.id = count;
         this.city = city;
@@ -25,7 +25,7 @@ public class Team implements Parcelable {
         this.image = image;
     }
 
-    public Team(int id, String city, String name, String sport, String mvp, String image) {
+    public Team(int id, String city, String name, String sport, String mvp, byte[] image) {
         this.id = id;
         this.city = city;
         this.name = name;
@@ -42,7 +42,7 @@ public class Team implements Parcelable {
         name = in.readString();
         sport = in.readString();
         mvp = in.readString();
-        image = in.readString();
+        in.readByteArray(image);
     }
 
     public static final Creator<Team> CREATOR = new Creator<Team>() {
@@ -77,7 +77,7 @@ public class Team implements Parcelable {
         return mvp;
     }
 
-    public String getImage() {
+    public byte[] getImage() {
         return image;
     }
 
@@ -97,7 +97,7 @@ public class Team implements Parcelable {
         dest.writeString(name);
         dest.writeString(sport);
         dest.writeString(mvp);
-        dest.writeString(image);
+        dest.writeByteArray(image);
     }
 
 
