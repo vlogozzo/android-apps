@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        teams = db.getAllTeams();
+        db.getAllTeams(teams);
 
         for (Team t : teams)
             Log.d("inspect", "onCreate: " + t.toString());
