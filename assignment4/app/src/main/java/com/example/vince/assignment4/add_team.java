@@ -4,42 +4,57 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.util.Base64;
+import android.util.DisplayMetrics;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 
 public class add_team extends AppCompatActivity {
     private byte[] imageData = null;
-    private String imageString;
+    private String filePath;
+    private DisplayMetrics dm = new DisplayMetrics();
+    private ImageView imageview;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_team);
-        Log.d("inspect", "activity started");
+
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        imageview = findViewById(R.id.teamImageView);
+
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.image_not_found);
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 20, byteArrayOutputStream);
         imageData = byteArrayOutputStream.toByteArray();
-        ((ImageView) findViewById(R.id.teamImageView)).setImageBitmap(BitmapFactory.decodeByteArray(imageData, 0, imageData.length));
+        imageview.setImageBitmap(getResizedBitmap(BitmapFactory.decodeByteArray(imageData, 0, imageData.length), dm.widthPixels / 2));
+
+        ArrayAdapter aa = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, MainActivity.sports);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ((Spinner) findViewById(R.id.sportSpinner)).setAdapter(aa);
 
         findViewById(R.id.uploadImageButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ActivityCompat.requestPermissions(add_team.this, new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 1);
                 startActivityForResult(new Intent("android.intent.action.PICK", MediaStore.Images.Media.EXTERNAL_CONTENT_URI), 100);
             }
         });
-
 
         findViewById(R.id.submitButton).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,7 +63,10 @@ public class add_team extends AppCompatActivity {
                 TextView name = findViewById(R.id.nameField);
                 Spinner sport = findViewById(R.id.sportSpinner);
                 TextView mvp = findViewById(R.id.mvpField);
-
+                Bitmap imageMap = getResizedBitmap(BitmapFactory.decodeFile(filePath), dm.widthPixels / 2);
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                imageMap.compress(Bitmap.CompressFormat.PNG, 20, bos);
+                String savableImage = Base64.encodeToString(bos.toByteArray(), 0);
 
                 if (city.getText().length() > 0 && name.getText().length() > 0) {
                     Intent intent = new Intent();
@@ -59,7 +77,7 @@ public class add_team extends AppCompatActivity {
                             name.getText().toString(),
                             sport.getSelectedItem().toString(),
                             mvp.getText().toString(),
-                            imageString
+                            savableImage
                     ));
 
                     intent.putExtra("newTeam", bundle);
@@ -94,14 +112,26 @@ public class add_team extends AppCompatActivity {
             String[] filePaths = new String[]{"_data"};
             Cursor cursor = getContentResolver().query(data.getData(), filePaths, null, null, null);
             cursor.moveToFirst();
-            imageString = cursor.getString(cursor.getColumnIndex(filePaths[0]));
-            Log.d("inspect", imageString);
+            filePath = cursor.getString(cursor.getColumnIndex(filePaths[0]));
             cursor.close();
-            //todo: image not setting after selection
-            ((ImageView) findViewById(R.id.teamImageView)).setImageBitmap(BitmapFactory.decodeFile(imageString));
+            imageview.setImageBitmap(getResizedBitmap(BitmapFactory.decodeFile(filePath), dm.widthPixels / 2));
         } catch (Exception e) {
 
         }
+    }
+
+    private Bitmap getResizedBitmap(Bitmap image, int maxSize) {
+        int width;
+        int height;
+        float bitmapRatio = ((float) image.getWidth()) / ((float) image.getHeight());
+        if (bitmapRatio > 1.0f) {
+            width = maxSize;
+            height = (int) (((float) width) / bitmapRatio);
+        } else {
+            height = maxSize;
+            width = (int) (((float) height) * bitmapRatio);
+        }
+        return Bitmap.createScaledBitmap(image, width, height, true);
     }
 }
 

@@ -14,9 +14,10 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     static final int ADD_TEAM_REQUEST = 1;
     static final int UPDATE_TEAM_REQUEST = 2;
-    appDB db = new appDB(this);
-    ArrayList<Team> teams = new ArrayList<>();
-    ArrayAdapter<Team> adapter;
+    static final String[] sports = {"", "Baseball", "Basketball", "Football", "Hockey"};
+    private appDB db = new appDB(this);
+    private ArrayList<Team> teams = new ArrayList<>();
+    private ArrayAdapter<Team> adapter;
 
 
     @Override

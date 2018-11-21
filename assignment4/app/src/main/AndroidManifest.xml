@@ -18,6 +18,7 @@
         </activity>
         <activity android:name=".add_team" />
         <activity android:name=".update_team"></activity>
+        
     </application>
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 </manifest>
