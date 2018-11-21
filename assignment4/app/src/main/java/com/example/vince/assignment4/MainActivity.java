@@ -3,6 +3,7 @@ package com.example.vince.assignment4;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,30 +22,36 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == ADD_TEAM_REQUEST && resultCode == RESULT_OK && data != null) {
-            Bundle bundle = data.getBundleExtra("newTeam");
-            Team temp = bundle.getParcelable("newTeam");
-            teams.add(temp);
-            adapter.notifyDataSetChanged();
-        } else if (requestCode == UPDATE_TEAM_REQUEST && resultCode == RESULT_OK && data != null) {
-            Bundle bundle = data.getBundleExtra("updatedTeam");
-            teams.set(bundle.getInt("index"), (Team) bundle.getParcelable("updatedTeam"));
-            adapter.notifyDataSetChanged();
-        } else if (requestCode == UPDATE_TEAM_REQUEST && resultCode == 2 && data != null) {
-            Bundle bundle = data.getBundleExtra("team");
-            Team temp = bundle.getParcelable("team");
+        if (data != null) {
+            if (requestCode == ADD_TEAM_REQUEST && resultCode == RESULT_OK && data != null) {
+                Bundle bundle = data.getBundleExtra("newTeam");
+                Team temp = bundle.getParcelable("newTeam");
+                db.update_team(temp);
+                teams.clear();
+                db.getAllTeams(teams);
+            } else if (requestCode == UPDATE_TEAM_REQUEST && resultCode == RESULT_OK && data != null) {
+                Bundle bundle = data.getBundleExtra("updatedTeam");
+                teams.set(bundle.getInt("index"), (Team) bundle.getParcelable("updatedTeam"));
+                db.update_team((Team) bundle.getParcelable("updatedTeam"));
+            } else if (requestCode == UPDATE_TEAM_REQUEST && resultCode == 2 && data != null) {
+                Bundle bundle = data.getBundleExtra("team");
+                Team temp = bundle.getParcelable("team");
+                db.delete_team(temp.getId());
 
-            for (int i = 0; i < teams.size(); i++)
-                if (teams.get(i).getName().equals(temp.getName())) {
-                    teams.remove(i);
-                    db.delete_team(temp.getName());
-                    break;
-                }
+                for (int i = 0; i < teams.size(); i++)
+                    if (teams.get(i).getId() == temp.getId()) {
+                        teams.remove(i);
+                        break;
+                    }
+            }
             adapter.notifyDataSetChanged();
+            for (Team t : teams)
+                Log.d("inspect", "onCreate: " + t.toString());
+            Log.d("inspect", "onActivityResult: adapter updated"+teams.size());
+
         } else if (resultCode == RESULT_CANCELED) {
             //activity sends nothing back (exit button hit)
         }
-
     }
 
     @Override
@@ -53,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         teams = db.getAllTeams();
+
+        for (Team t : teams)
+            Log.d("inspect", "onCreate: " + t.toString());
         adapter = new listAdapter(this, teams);
         ListView listview = findViewById(R.id.listView);
         listview.setAdapter(adapter);
@@ -79,12 +89,6 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        db.update_teams(teams);
     }
 }
 
