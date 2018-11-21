@@ -2,20 +2,19 @@ package com.example.vince.assignment4;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 public class Team implements Parcelable {
-    private static int count;
-    private int id;
+
+    private int id = 0;
     private String city;
     private String name;
     private String sport = "";
     private String mvp = "";
-    private String image = "";
+    private String image;
 
 
     public Team(String city, String name, String sport, String mvp, String image) {
-        count++;
-        this.id = count;
         this.city = city;
         this.name = name;
         if (sport != null)
@@ -33,7 +32,8 @@ public class Team implements Parcelable {
             this.sport = sport;
         if (mvp != null)
             this.mvp = mvp;
-        this.image = image;
+        if (image != null)
+            this.image = image;
     }
 
     protected Team(Parcel in) {
@@ -81,10 +81,6 @@ public class Team implements Parcelable {
         return image;
     }
 
-    public static void setCount(int count) {
-        Team.count = count;
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -100,9 +96,8 @@ public class Team implements Parcelable {
         dest.writeString(image);
     }
 
-
     @Override
     public String toString() {
-        return String.format("%d %s %s %s %s %s", id, city, name, sport, mvp, image);
+        return String.format("%d %s %s %s %s", id, city, name, sport, mvp);
     }
 }
