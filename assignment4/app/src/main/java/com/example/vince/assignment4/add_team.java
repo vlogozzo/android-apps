@@ -19,8 +19,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
-import java.lang.reflect.Array;
-import java.util.Arrays;
 
 
 public class add_team extends AppCompatActivity {
@@ -28,7 +26,8 @@ public class add_team extends AppCompatActivity {
     private String filePath;
     private DisplayMetrics dm = new DisplayMetrics();
     private ImageView imageview;
-
+    private String savableImage;
+    private boolean customImage = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +37,12 @@ public class add_team extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         imageview = findViewById(R.id.teamImageView);
 
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.image_not_found);
+        Bitmap bitmap = getResizedBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.image_not_found), dm.widthPixels / 2);
         final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 20, byteArrayOutputStream);
         imageData = byteArrayOutputStream.toByteArray();
-        imageview.setImageBitmap(getResizedBitmap(BitmapFactory.decodeByteArray(imageData, 0, imageData.length), dm.widthPixels / 2));
+        imageview.setImageBitmap(BitmapFactory.decodeByteArray(imageData, 0, imageData.length));
+        savableImage = Base64.encodeToString(imageData, 0);
 
         ArrayAdapter aa = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, MainActivity.sports);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -63,11 +63,12 @@ public class add_team extends AppCompatActivity {
                 TextView name = findViewById(R.id.nameField);
                 Spinner sport = findViewById(R.id.sportSpinner);
                 TextView mvp = findViewById(R.id.mvpField);
-                Bitmap imageMap = getResizedBitmap(BitmapFactory.decodeFile(filePath), dm.widthPixels / 2);
-                ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                imageMap.compress(Bitmap.CompressFormat.PNG, 20, bos);
-                String savableImage = Base64.encodeToString(bos.toByteArray(), 0);
-
+                if (customImage) {
+                    Bitmap imageMap = getResizedBitmap(BitmapFactory.decodeFile(filePath), dm.widthPixels / 2);
+                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                    imageMap.compress(Bitmap.CompressFormat.PNG, 20, bos);
+                    savableImage = Base64.encodeToString(bos.toByteArray(), 0);
+                }
                 if (city.getText().length() > 0 && name.getText().length() > 0) {
                     Intent intent = new Intent();
                     Bundle bundle = new Bundle();
@@ -115,6 +116,7 @@ public class add_team extends AppCompatActivity {
             filePath = cursor.getString(cursor.getColumnIndex(filePaths[0]));
             cursor.close();
             imageview.setImageBitmap(getResizedBitmap(BitmapFactory.decodeFile(filePath), dm.widthPixels / 2));
+            customImage = true;
         } catch (Exception e) {
 
         }
