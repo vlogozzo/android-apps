@@ -46,7 +46,7 @@ public class appDB extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         if (team.getId() != 0) {
-            values.put("id", Integer.valueOf(team.getId()));
+            values.put("id", team.getId());
         }
         values.put("city", team.getCity());
         values.put("name", team.getName());
