@@ -26,41 +26,40 @@ public class appDB extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public ArrayList<Team> getAllTeams() {
-        ArrayList<Team> teams = new ArrayList<>();
-
-        Cursor cursor = getReadableDatabase().rawQuery("SELECT * FROM teams", null);
+    public void getAllTeams(ArrayList<Team> teams) {
+        teams.clear();
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM teams", null);
         while (cursor.moveToNext()) {
             teams.add(new Team(
+                    cursor.getInt(cursor.getColumnIndex("id")),
                     cursor.getString(cursor.getColumnIndex("city")),
                     cursor.getString(cursor.getColumnIndex("name")),
                     cursor.getString(cursor.getColumnIndex("sport")),
                     cursor.getString(cursor.getColumnIndex("mvp")),
-                    cursor.getString(cursor.getColumnIndex("image"))
-            ));
-        }
-        return teams;
-    }
-
-    public void update_teams(ArrayList<Team> teams) {
-        SQLiteDatabase db = getWritableDatabase();
-        for (Team t : teams) {
-            Log.d("inspect", "update_teams: " + t.toString());
-            ContentValues values = new ContentValues();
-            values.put("city", t.getCity());
-            values.put("name", t.getName());
-            values.put("sport", t.getSport());
-            values.put("mvp", t.getMvp());
-            values.put("image", t.getImage());
-            db.insertWithOnConflict("teams", null, values, SQLiteDatabase.CONFLICT_REPLACE);
+                    cursor.getString(cursor.getColumnIndex("image"))));
         }
         db.close();
     }
 
-    public void delete_team(String name) {
+    public void update_team(Team team) {
         SQLiteDatabase db = getWritableDatabase();
-        StringBuilder sb = new StringBuilder().append("name = '").append(name).append("'");
-        db.delete("teams", sb.toString(), null);
+        ContentValues values = new ContentValues();
+        if (team.getId() != 0) {
+            values.put("id", Integer.valueOf(team.getId()));
+        }
+        values.put("city", team.getCity());
+        values.put("name", team.getName());
+        values.put("sport", team.getSport());
+        values.put("mvp", team.getMvp());
+        values.put("image", team.getImage());
+        db.insertWithOnConflict("teams", null, values, 5);
+        db.close();
+    }
+
+    public void delete_team(int index) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete("teams", "id="+index, null);
         db.close();
     }
 }
