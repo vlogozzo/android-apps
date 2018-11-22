@@ -45,10 +45,6 @@ public class MainActivity extends AppCompatActivity {
                     }
             }
             adapter.notifyDataSetChanged();
-            for (Team t : teams)
-                Log.d("inspect", "onCreate: " + t.toString());
-            Log.d("inspect", "onActivityResult: adapter updated"+teams.size());
-
         } else if (resultCode == RESULT_CANCELED) {
             //activity sends nothing back (exit button hit)
         }
