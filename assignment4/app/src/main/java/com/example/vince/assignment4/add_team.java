@@ -68,7 +68,9 @@ public class add_team extends AppCompatActivity {
                     ByteArrayOutputStream bos = new ByteArrayOutputStream();
                     imageMap.compress(Bitmap.CompressFormat.PNG, 20, bos);
                     savableImage = Base64.encodeToString(bos.toByteArray(), 0);
-                }
+                } else
+                    savableImage = savableImage;
+
                 if (city.getText().length() > 0 && name.getText().length() > 0) {
                     Intent intent = new Intent();
                     Bundle bundle = new Bundle();
