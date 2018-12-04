@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">assignment6</string>
+    <string name="earthquake">Earthquake</string>
+    <string name="parameters">Parameters</string>
+    <string name="numberOfEarthquakes">Number of Earthquakes:</string>
+    <string name="orderBy">Order By:</string>
+    <string name="startDate">START DATE:</string>
+    <string name="submit">SUBMIT</string>
+</resources>
