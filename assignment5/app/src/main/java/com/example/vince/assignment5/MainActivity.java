@@ -12,7 +12,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     ListView linearLayoutListView;
 
-    String stringURL = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&minmagnitude=6.0&limit=20";
+    String stringURL = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2018-09-01&minmagnitude=6&limit=20";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
