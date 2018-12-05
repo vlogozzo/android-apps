@@ -11,7 +11,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
@@ -60,9 +60,6 @@ public final class Utils {
             return jsonResponse;
         }
 
-        HttpURLConnection urlConnection = null;
-        InputStream inputStream = null;
-
         try {
             InputStream is = new URL(url.toString()).openStream();
             BufferedReader read = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
@@ -73,9 +70,8 @@ public final class Utils {
             return json.toString();
         } catch (Exception e) {
             Log.d(LOG_TAG, "Problem " + e.getMessage());
-
+            throw new IOException("error");
         }
-        return null;
     }
 
     private static List<String> extractFeatureFromJson(String earthquakeJSON) {

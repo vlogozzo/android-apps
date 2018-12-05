@@ -10,9 +10,10 @@ import android.widget.ListView;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    ListView linearLayoutListView;
+
 
     String stringURL = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2018-09-01&minmagnitude=6&limit=20";
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         public void onPostExecute(List<String> postExecuteResult) {
             ArrayAdapter<String> arrayAdapter = new CustomListAdapter(MainActivity.this, postExecuteResult);
+            ListView linearLayoutListView;
             linearLayoutListView = findViewById(R.id.listView);
             linearLayoutListView.setAdapter(arrayAdapter);
         }
