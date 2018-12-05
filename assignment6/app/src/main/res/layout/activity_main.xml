@@ -75,11 +75,11 @@
         android:layout_gravity="center"
         android:background="@android:color/holo_blue_light"
         android:orientation="horizontal"
-        android:paddingBottom="20.0sp">
+        android:paddingBottom="20.0sp"
+        android:id="@+id/startDateButton">
 
-        <Button
-            android:id="@+id/startDateButton"
-            style="?android:buttonBarButtonStyle"
+        <TextView
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/startDate"
